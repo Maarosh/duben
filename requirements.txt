@@ -1,0 +1,2 @@
+flask==1.1.2  # An older version of Flask
+pyyaml==5.1   # Older version with known deserialization vulnerabilities

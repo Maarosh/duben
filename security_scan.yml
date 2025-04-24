@@ -1,0 +1,48 @@
+name: Security Scanning Workflow
+
+on:
+  push:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  bandit_scan:
+    name: Static Code Analysis (Bandit)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+
+      - name: Install Bandit
+        run: pip install bandit
+
+      - name: Run Bandit Security Scan
+        run: bandit -r .
+
+  audit_dependencies:
+    name: Check Python Dependencies for Vulnerabilities
+    runs-on: ubuntu-latest
+  
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+  
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+  
+      - name: Install pip-audit
+        run: pip install pip-audit
+  
+      - name: Run pip-audit
+        run: pip-audit -r requirements.txt
+
+  
