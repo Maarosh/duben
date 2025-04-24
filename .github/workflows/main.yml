@@ -1,4 +1,4 @@
-name: Ssecurty Scanning WorkFlow
+name: Securty Scanning WorkFlow
 
 on:
   push:
